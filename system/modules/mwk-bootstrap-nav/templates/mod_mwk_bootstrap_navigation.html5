@@ -1,0 +1,15 @@
+<nav <?php echo $this->bootstrapAffix; echo $this->bootstrapDataOffsetTop; echo $this->bootstrapDataOffsetBottom;?> class="navbar <?php echo $this->bootstrapNavigationType; echo $this->bootstrapNavigationInverse;?>">
+    <div class="container">
+        <div class="navbar-header">
+            <?php
+                echo $this->mobileMenu;
+                echo $this->brand;
+            ?>
+        </div> <!— navbar-header END —>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <?php
+                echo $this->items;
+            ?>
+        </div> <!— navbar-collapse END —>
+    </div> <!— container END —>
+</nav>

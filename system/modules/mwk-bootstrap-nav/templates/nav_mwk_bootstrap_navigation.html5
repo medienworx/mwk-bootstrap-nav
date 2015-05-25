@@ -1,0 +1,42 @@
+<?php
+        if($this->level == 'level_1') {
+            $ul_css = 'nav navbar-nav';
+            $role   = '';
+        } else {
+            $ul_css = 'dropdown-menu';
+            $role   = 'role="navigation"';
+        }
+        ?>
+<ul class="<?php echo $ul_css; echo $this->bootstrapNavbarAlign; echo $this->bootstrapExtraCss; ?>" <?php echo $role;?>>
+    <?php
+        foreach($this->items as $item) {
+            $uniqeId = microtime(true);
+            $active = ($item['isActive'] == true)?'active ':'';
+            $dropdown_class = '';
+            $dropdown_class_link = '';
+
+            if($item['subpages'] > 0) {
+                $dropdown_class = 'dropdown';
+
+                $liCss = 'class="'.trim(implode(' ', array($active, $dropdown_class, $item['cssClass']))).'"';
+
+                echo '
+                    <li '.$liCss.'>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">'.$item['title'].'<span class="caret"></span></a>'.$item['subitems'].'
+                    </li>
+                    ';
+            } else {
+                $liCss = '';
+                if ($active != '' || $dropdown_class != '' || $this->cssID != '') {
+                    $liCss = 'class="'.trim(implode(' ', array($active, $dropdown_class, $item['cssClass']))).'"';
+                }
+                echo '
+                    <li '.$liCss.'>
+                        <a href="'.$item['href'].'" '.$dropdown_class_link.'>'.$item['title'].'</a>'.$item['subitems'].'
+                    </li>
+                    ';
+            }
+        }
+    ?>
+</ul>
+
